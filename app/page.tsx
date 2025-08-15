@@ -13,12 +13,15 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
   const [allClients, setAllClients] = useState<Client[]>([]);
+  const [isDataLoading, setIsDataLoading] = useState(true); // Nouvel état pour le chargement initial
 
   // Charge tous les clients au démarrage
   useEffect(() => {
     const loadClients = async () => {
+      setIsDataLoading(true);
       const data = await fetchClientsFromSheets();
       setAllClients(data);
+      setIsDataLoading(false); // Données chargées
     };
     loadClients();
   }, []);
@@ -63,38 +66,61 @@ export default function Home() {
         </motion.div>
       </header>
 
-      {/* Bouton principal */}
-      <div className="text-center mb-16 relative z-10">
-        <motion.button
-          onClick={handleDrawClients}
-          disabled={isLoading || allClients.length === 0}
-          className="px-12 py-5 bg-gradient-to-r from-violet-500 via-purple-500 to-violet-600 text-white font-bold rounded-full shadow-cottagecore hover:shadow-cottagecore-hover transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-xl shine-effect border-2 border-violet-400/50"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <div className="flex items-center space-x-4">
-            <Shuffle className={`w-7 h-7 ${isLoading ? "animate-spin" : ""}`} />
-            <span className="tracking-wide">
-              {isLoading
-                ? "Mélange des cartes..."
-                : selectedClients.length > 0
-                ? "Nouveau tirage"
-                : "Tirer 3 clients"}
-            </span>
-            <span className="text-2xl">{isLoading ? "🎴" : ""}</span>
-          </div>
-        </motion.button>
-
-        {allClients.length === 0 && (
-          <motion.p
-            className="text-violet-200 mt-6 bg-black/30 backdrop-blur-sm rounded-xl py-2 px-6 inline-block border border-violet-400/30"
+      {/* Zone du bouton - Hauteur fixe pour éviter les décalages */}
+      <div className="text-center mb-16 relative z-10 h-24 flex items-center justify-center">
+        {isDataLoading ? (
+          // Message de chargement initial
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-violet-200 bg-black/30 backdrop-blur-sm rounded-xl py-3 px-8 border border-violet-400/30"
           >
-            <span className="animate-pulse">🌸</span> Chargement des clients...{" "}
-            <span className="animate-pulse">🌸</span>
-          </motion.p>
+            <div className="flex items-center space-x-3">
+              <motion.span
+                className="text-2xl"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
+                🌸
+              </motion.span>
+              <span className="font-quicksand font-medium">
+                Chargement des clients magiques...
+              </span>
+              <motion.span
+                className="text-2xl"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
+                ✨
+              </motion.span>
+            </div>
+          </motion.div>
+        ) : (
+          // Bouton principal (apparaît une fois les données chargées)
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
+            onClick={handleDrawClients}
+            disabled={isLoading}
+            className="px-12 py-5 bg-gradient-to-r from-violet-500 via-purple-500 to-violet-600 text-white font-bold rounded-full shadow-cottagecore hover:shadow-cottagecore-hover transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-xl shine-effect border-2 border-violet-400/50"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="flex items-center space-x-4">
+              <Shuffle className={`w-7 h-7`} />
+              <span className="tracking-wide">
+                {isLoading
+                  ? "Mélange des cartes..."
+                  : selectedClients.length > 0
+                  ? "Nouveau tirage"
+                  : "Tirer 3 clients"}
+              </span>
+              <span className="text-2xl">{isLoading ? "🎴" : ""}</span>
+            </div>
+          </motion.button>
         )}
       </div>
 

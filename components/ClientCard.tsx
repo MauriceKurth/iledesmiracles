@@ -14,7 +14,7 @@ export default function ClientCard({
 
   return (
     <motion.div
-      className="relative w-80 h-96 mx-4 cursor-pointer"
+      className="relative w-96 h-[520px] mx-4 cursor-pointer"
       initial={{ rotateY: 180, scale: 0.8 }}
       animate={{
         rotateY: isRevealed ? 0 : 180,
@@ -59,23 +59,26 @@ export default function ClientCard({
         style={{ backfaceVisibility: "hidden" }}
       >
         <div className="h-full flex flex-col items-center text-center relative">
-          {/* Ornements coins */}
-          <div className="absolute top-3 left-3 text-violet-400/60">✨</div>
-          <div className="absolute top-3 right-3 text-violet-400/60">🌸</div>
+          {/* Ornements coins avec émoji personnalisé */}
+          <div className="absolute top-3 left-3 text-violet-400/60">
+            {client.client_emoji || "✨"}
+          </div>
+          <div className="absolute top-3 right-3 text-violet-400/60">
+            {client.client_emoji || "✨"}
+          </div>
 
-          {/* Image du client */}
-          <div className="w-28 h-28 rounded-full overflow-hidden mb-4 border-4 border-violet-300/50 shadow-lg bg-gradient-to-br from-violet-100 to-purple-200 relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 to-transparent"></div>
+          {/* Image du client - RECTANGLE VERTICAL */}
+          <div className="w-48 h-60 overflow-hidden mb-4 rounded-lg relative">
             {!imageLoaded && (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-200 to-purple-300 relative z-10">
-                <span className="text-4xl">👤</span>
+              <div className="w-full h-full flex items-center justify-center relative z-10">
+                <span className="text-6xl text-violet-400/70">👤</span>
               </div>
             )}
             <Image
               src={client.client_imageurl}
               alt={client.client_name}
-              width={112}
-              height={112}
+              width={192}
+              height={240}
               className={`w-full h-full object-cover transition-opacity duration-300 relative z-10 ${
                 imageLoaded ? "opacity-100" : "opacity-0"
               }`}
@@ -90,10 +93,12 @@ export default function ClientCard({
             {client.client_name}
           </h3>
 
-          {/* Séparateur décoratif */}
+          {/* Séparateur décoratif avec émoji personnalisé */}
           <div className="flex items-center justify-center mb-3 w-full">
             <div className="h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent flex-1"></div>
-            <span className="mx-2 text-violet-400 text-xs">✨</span>
+            <span className="mx-2 text-violet-400 text-xs">
+              {client.client_emoji || "✨"}
+            </span>
             <div className="h-px bg-gradient-to-r from-transparent via-violet-300 to-transparent flex-1"></div>
           </div>
 
@@ -104,28 +109,32 @@ export default function ClientCard({
             </p>
           </div>
 
-          {/* Footer décoratif */}
+          {/* Footer décoratif avec émoji personnalisé */}
           <div className="mt-4 flex justify-center space-x-2">
             <span className="text-violet-400/70 text-sm twinkle-animation">
-              🌸
+              {client.client_emoji || "✨"}
             </span>
             <span
               className="text-purple-400/70 text-sm twinkle-animation"
               style={{ animationDelay: "0.5s" }}
             >
-              ✨
+              {client.client_emoji || "✨"}
             </span>
             <span
               className="text-violet-400/70 text-sm twinkle-animation"
               style={{ animationDelay: "1s" }}
             >
-              🌸
+              {client.client_emoji || "✨"}
             </span>
           </div>
 
-          {/* Ornements coins bas */}
-          <div className="absolute bottom-3 left-3 text-violet-400/60">✨</div>
-          <div className="absolute bottom-3 right-3 text-violet-400/60">🌸</div>
+          {/* Ornements coins bas avec émoji personnalisé */}
+          <div className="absolute bottom-3 left-3 text-violet-400/60">
+            {client.client_emoji || "✨"}
+          </div>
+          <div className="absolute bottom-3 right-3 text-violet-400/60">
+            {client.client_emoji || "✨"}
+          </div>
         </div>
       </div>
     </motion.div>

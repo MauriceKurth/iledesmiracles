@@ -20,12 +20,13 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
       const line = lines[i].trim();
       if (line) {
         const columns = line.split(",");
-        if (columns.length >= 4) {
+        if (columns.length >= 4) { // Au minimum 4 colonnes requises
           clients.push({
             client_id: columns[0].replace(/"/g, ""),
             client_name: columns[1].replace(/"/g, ""),
             client_imageurl: columns[2].replace(/"/g, ""),
             client_description: columns[3].replace(/"/g, ""),
+            client_emoji: columns[4] ? columns[4].replace(/"/g, "") : undefined, // Nouvelle colonne
           });
         }
       }
@@ -43,6 +44,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
           "https://via.placeholder.com/200x200/ffb3d1/ffffff?text=Alice",
         client_description:
           "Adore les objets anciens et les curiosités. Toujours à la recherche de pièces uniques pour sa collection.",
+        client_emoji: "🏺",
       },
       {
         client_id: "2",
@@ -51,6 +53,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
           "https://via.placeholder.com/200x200/d1ffb3/ffffff?text=Bob",
         client_description:
           "Passionné de gastronomie, il recherche des épices rares et des ingrédients exotiques.",
+        client_emoji: "🍰",
       },
       {
         client_id: "3",
@@ -59,6 +62,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
           "https://via.placeholder.com/200x200/b3d1ff/ffffff?text=Clara",
         client_description:
           "Aime tout ce qui concerne le jardinage. Elle cherche des graines rares et des outils originaux.",
+        client_emoji: "🌻",
       },
     ];
   }
