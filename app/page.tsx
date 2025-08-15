@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -8,7 +9,6 @@ import { Client } from "../types/client";
 import { fetchClientsFromSheets, selectRandomClients } from "../lib/sheets";
 
 export default function Home() {
-  const [clients, setClients] = useState<Client[]>([]);
   const [selectedClients, setSelectedClients] = useState<Client[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -52,7 +52,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-7xl font-flavors text-violet-100 mb-6 tracking-wide drop-shadow-lg">
-            L'Île des Miracles
+            L&apos;Île des Miracles
           </h1>
           <div className="max-w-3xl mx-auto px-4">
             <p className="text-xl text-violet-200 leading-relaxed font-medium shadow-sm bg-black/20 backdrop-blur-sm rounded-2xl py-4 px-8 border border-violet-400/30 font-quicksand">
@@ -152,7 +152,7 @@ export default function Home() {
       {/* Footer décoratif */}
       <footer className="text-center py-8 relative z-10">
         <p className="text-violet-300 text-sm bg-black/20 backdrop-blur-sm rounded-xl py-2 px-4 inline-block border border-violet-400/30">
-          Bonne aventure dans L'Île des Miracles !
+          Bonne aventure dans L&apos;Île des Miracles !
         </p>
       </footer>
     </div>

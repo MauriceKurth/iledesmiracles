@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ClientCardProps } from "../types/client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ClientCard({
   client,
@@ -70,14 +71,17 @@ export default function ClientCard({
                 <span className="text-4xl">👤</span>
               </div>
             )}
-            <img
+            <Image
               src={client.client_imageurl}
               alt={client.client_name}
+              width={112}
+              height={112}
               className={`w-full h-full object-cover transition-opacity duration-300 relative z-10 ${
                 imageLoaded ? "opacity-100" : "opacity-0"
               }`}
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageLoaded(true)}
+              unoptimized
             />
           </div>
 
