@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Flavors&family=Quicksand:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Police personnalisée pour le titre */
+.font-flavors {
+  font-family: "Flavors", cursive !important;
+}
+
+/* Police mignonne pour le corps */
+.font-quicksand {
+  font-family: "Quicksand", sans-serif !important;
+}
+
+/* Background pattern cottagecore dark mode */
+body {
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(139, 69, 195, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(168, 85, 247, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(196, 129, 247, 0.1) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      #1e1b4b 0%,
+      #312e81 25%,
+      #4c1d95 50%,
+      #581c87 75%,
+      #6b21a8 100%
+    );
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* Pattern décoratif subtil */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(196, 129, 247, 0.1) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Styles pour les animations de cartes */
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Ombres douces cottagecore */
+.shadow-cottagecore {
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.3),
+    0 8px 32px rgba(255, 204, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.shadow-cottagecore-hover {
+  box-shadow: 0 8px 32px rgba(255, 182, 193, 0.4),
+    0 16px 48px rgba(255, 204, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Bordures ornées */
+.border-ornate {
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #f8bbd9, #fce4ec, #e1bee7, #f3e5f5) 1;
+  border-radius: 20px;
+  position: relative;
+}
+
+.border-ornate::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(45deg, #f8bbd9, #fce4ec, #e1bee7, #f3e5f5);
+  border-radius: 24px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Effet de brillance sur les éléments interactifs */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.shine-effect:hover::before {
+  left: 100%;
+}
+
+/* Animation de flotement pour les éléments décoratifs */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Animation de scintillement pour les étoiles */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.twinkle-animation {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* Style pour les cartes avec texture */
+.card-texture {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 245, 250, 0.9) 100%
+    ),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 182, 193, 0.1) 0%,
+      transparent 50%
+    );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.2);
+}
