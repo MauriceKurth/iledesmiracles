@@ -26,7 +26,8 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
             client_name: columns[1].replace(/"/g, ""),
             client_imageurl: columns[2].replace(/"/g, ""),
             client_description: columns[3].replace(/"/g, ""),
-            client_emoji: columns[4] ? columns[4].replace(/"/g, "") : undefined, // Nouvelle colonne
+            client_emoji: columns[4] ? columns[4].replace(/"/g, "") : undefined,
+            client_force: columns[5] ? columns[5].replace(/"/g, "") : undefined, // Force assignment field
           });
         }
       }
@@ -45,6 +46,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
         client_description:
           "Adore les objets anciens et les curiosités. Toujours à la recherche de pièces uniques pour sa collection.",
         client_emoji: "🏺",
+        client_force: "Lisa", // Example force assignment
       },
       {
         client_id: "2",
@@ -54,6 +56,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
         client_description:
           "Passionné de gastronomie, il recherche des épices rares et des ingrédients exotiques.",
         client_emoji: "🍰",
+        client_force: undefined, // No force assignment
       },
       {
         client_id: "3",
@@ -63,6 +66,7 @@ export async function fetchClientsFromSheets(): Promise<Client[]> {
         client_description:
           "Aime tout ce qui concerne le jardinage. Elle cherche des graines rares et des outils originaux.",
         client_emoji: "🌻",
+        client_force: "Morgane", // Example force assignment
       },
     ];
   }
